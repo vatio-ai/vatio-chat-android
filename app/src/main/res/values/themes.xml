@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Only the window behind Compose: light here, dark in values-night, so the
+     first frame matches the system. The app's colors are in ui/theme. -->
+<resources>
+    <style name="Theme.VatioChat" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>
