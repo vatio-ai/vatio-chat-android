@@ -64,7 +64,7 @@ fun SettingsScreen(viewModel: ChatViewModel, onClose: () -> Unit) {
     var visitorToken by rememberSaveable { mutableStateOf(saved.visitorToken.orEmpty()) }
     var showsVisitorToken by rememberSaveable { mutableStateOf(false) }
 
-    // Only publishable tokens can ship in an app; the SDK refuses anything else.
+    // Only publishable keys can ship in an app; the SDK refuses anything else.
     val isPublishable = token.trim().startsWith("vatpub_")
     val canSave = workspace.isNotBlank() && isPublishable
 
@@ -103,13 +103,13 @@ fun SettingsScreen(viewModel: ChatViewModel, onClose: () -> Unit) {
             OutlinedTextField(
                 value = token,
                 onValueChange = { token = it },
-                label = { Text("Publishable token") },
+                label = { Text("Publishable key") },
                 singleLine = true,
                 isError = token.isNotBlank() && !isPublishable,
                 supportingText = {
                     Text(
                         if (token.isNotBlank() && !isPublishable) {
-                            "A publishable token starts with vatpub_. Never put a vat_ token in an app."
+                            "A publishable key starts with vatpub_. Never put a vat_ token in an app."
                         } else {
                             "It must allow ${viewModel.origin}."
                         },

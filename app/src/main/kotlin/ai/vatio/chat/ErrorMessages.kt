@@ -9,7 +9,7 @@ import ai.vatio.VatioException
  */
 fun VatioException.userMessage(origin: String): String = when (code) {
     "origin_not_allowed" -> "This token doesn't allow this app. Add $origin to its allowed origins."
-    "wrong_token_kind" -> "That isn't a publishable token. Use a vatpub_ token in Settings."
+    "wrong_token_kind" -> "That isn't a publishable key. Use a vatpub_ key in Settings."
     "no_agent_deployed" -> "This workspace has no agent published for this token yet."
     "rate_limited" -> "Too many messages for now. Wait a minute and try again."
     "network_error" -> "Can't reach Vatio. Check your connection and try again."

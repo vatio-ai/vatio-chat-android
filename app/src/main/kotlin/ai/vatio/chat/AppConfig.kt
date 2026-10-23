@@ -5,15 +5,15 @@ package ai.vatio.chat
  * answers on vatio.ai. Settings can override all of it at runtime.
  *
  * To point the app at your own agent, put your workspace here with a
- * publishable token that allows this app's origin:
+ * publishable key that allows this app's origin:
  *
- *     vatio tokens create --env preview --label android --origin android-app://ai.vatio.chat
+ *     vatio keys create publishable --env preview --label android --origin android-app://ai.vatio.chat
  *
- * (`--env live` once the agent is published; `vatio tokens origins PREFIX
+ * (`--env live` once the agent is published; `vatio keys origins PREFIX
  * URL...` adds the origin to a token you already have.) The origin is
  * `android-app://` plus the applicationId, so it changes if you change that.
  *
- * A publishable token (`vatpub_`) is meant to ship inside an app. A developer
+ * A publishable key (`vatpub_`) is meant to ship inside an app. A developer
  * token (`vat_`) never is: anyone can read it out of the APK.
  */
 object AppConfig {

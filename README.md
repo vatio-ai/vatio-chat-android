@@ -44,23 +44,23 @@ JDK 17 or newer and an Android SDK (`ANDROID_HOME`):
 
 ## Point it at your own agent
 
-A publishable token only works from the origins it allows. This app's origin
+A publishable key only works from the origins it allows. This app's origin
 is `android-app://` plus its `applicationId`: `android-app://ai.vatio.chat`.
 
-1. Create a token that allows it, from your agent's project:
+1. Create a publishable key that allows it, from your agent's project:
 
    ```bash
-   vatio tokens create --env preview --label android --origin android-app://ai.vatio.chat
+   vatio keys create publishable --env preview --label android --origin android-app://ai.vatio.chat
    ```
 
-   Use `--env live` once the agent is published. To add the origin to a token
-   you already have, run `vatio tokens origins PREFIX URL...`.
-2. Put your workspace and the `vatpub_` token in
+   Use `--env live` once the agent is published. To add the origin to a key
+   you already have, run `vatio keys origins PREFIX URL...`.
+2. Put your workspace and the `vatpub_` key in
    [`AppConfig.kt`](app/src/main/kotlin/ai/vatio/chat/AppConfig.kt). To try a
-   token without rebuilding, paste it in **Settings** instead.
+   key without rebuilding, paste it in **Settings** instead.
 
 If you change the `applicationId`, the origin changes with it. A publishable
-token is meant to ship inside an app. A `vat_` token is a developer secret:
+key is meant to ship inside an app. A `vat_` token is a developer secret:
 never put one in an app.
 
 ### Signed-in users
@@ -80,7 +80,7 @@ Everything lives under `app/src/main/`. The Kotlin is in
 | File | What it shows how to do |
 |---|---|
 | `settings.gradle.kts`, `app/build.gradle.kts` | Add the SDK from JitPack: `com.github.vatio-ai:android` |
-| `AppConfig.kt` | The workspace, publishable token and base URL the app ships with, and how to point them at your agent |
+| `AppConfig.kt` | The workspace, publishable key and base URL the app ships with, and how to point them at your agent |
 | `ChatViewModel.kt` | Own the `Vatio` client and the `VatioChat` in an `AndroidViewModel`: resume, send, and put the text back when a send fails. Also open a past conversation, start over, answer feedback, surface `lastError`, replace the chat when settings change, and close it in `onCleared()` |
 | `Settings.kt` | Keep the overrides (workspace, token, base URL, visitor token) in SharedPreferences |
 | `Draft.kt` | What the composer holds, and how a failed send goes back into it |
