@@ -106,8 +106,9 @@ Everything lives under `app/src/main/`. The Kotlin is in
 ## Your own app
 
 The quickest way to put an agent in your own app is to run
-`npx @vatio-ai/skills` in its project, then `/vatio-init` and
-`/vatio-add-to-app` in Claude Code. In Cursor or Codex, ask it to use them.
+`npx @vatio-ai/skills` in its project, then `/vatio-init` in Claude Code (in
+Cursor or Codex, ask it to use vatio-init), and then ask it to add the
+[Android SDK](https://vatio.ai/docs/guides/ai-agent-in-your-android-app).
 
 Docs: [Android SDK](https://vatio.ai/docs/sdk/android) ·
 [Limits](https://vatio.ai/docs/sdk/limits) ·
