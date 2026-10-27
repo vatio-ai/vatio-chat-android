@@ -35,7 +35,7 @@ kotlin {
 }
 
 dependencies {
-    implementation("com.github.vatio-ai:android:0.2.3")
+    implementation("com.github.vatio-ai:android:0.2.4")
 
     implementation(platform("androidx.compose:compose-bom:2024.12.01"))
     implementation("androidx.compose.material3:material3")
