@@ -4,18 +4,26 @@ import ai.vatio.VatioMessage
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.selection.SelectionContainer
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.OpenInNew
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.dp
 
 /**
@@ -59,10 +67,21 @@ private fun VisitorMessage(message: VatioMessage, modifier: Modifier) {
 
 @Composable
 private fun AgentMessage(message: VatioMessage, modifier: Modifier) {
+    val uriHandler = LocalUriHandler.current
+    // The links the reply sends as buttons (https://vatio.ai/docs/links#buttons):
+    // drawn under it, and out of its text.
+    val buttons = message.buttons.filter { it.type == "url" }
     Column(modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(6.dp)) {
         MessageAttachments(message.attachments, alignment = Alignment.Start)
         if (message.hasText) {
-            SelectionContainer { Markdown(message.content) }
+            SelectionContainer { Markdown(if (buttons.isEmpty()) message.content else message.textWithoutButtons) }
+        }
+        buttons.forEach { button ->
+            OutlinedButton(onClick = { uriHandler.openUri(button.url) }) {
+                Icon(Icons.AutoMirrored.Filled.OpenInNew, contentDescription = null, Modifier.size(18.dp))
+                Spacer(Modifier.width(8.dp))
+                Text(button.title)
+            }
         }
     }
 }
